@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Searchbar from './components/Searchbar';
 import Card from './components/Card';
+import Favorites from './components/Favorites';
 
 function App() {
   const [searchWord, setSearchWord] = useState("");
   const [wordData, setWordData] = useState([]);
-  const [cardTitle, setCardTitle] =useState("");
+  const [cardTitle, setCardTitle] = useState("");
+  const [favoriteWords, setFavoriteWords] = useState([]);
   
   return (
     <div>
@@ -23,7 +25,13 @@ function App() {
         searchWord={searchWord} 
         wordData={wordData}
         cardTitle={cardTitle}
-        />
+        favoriteWords={favoriteWords}
+        setFavoriteWords={setFavoriteWords}
+      />
+
+      <Favorites
+        favoriteWords={favoriteWords}
+      />
       
     </div>
   )

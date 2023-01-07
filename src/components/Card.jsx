@@ -2,8 +2,21 @@ import React from 'react';
 import Illustration from './Illustration';
 import CardBody from './CardBody';
 
-const Card = ({ wordData, cardTitle }) => {
-    console.log(wordData[0])
+const Card = ({ wordData, cardTitle, setFavoriteWords }) => {
+  
+    const addWordToFavorites = () => {
+        const definitions = wordData.map(e => e.definition);
+    
+        const entry = {
+            "term": cardTitle,
+            "definitions": [
+                ...definitions
+            ]
+        }
+
+        setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry])
+    }
+
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -22,7 +35,12 @@ const Card = ({ wordData, cardTitle }) => {
                     <div className="card-actions justify-end">
                     
                     {wordData.length > 0 && 
-                        <button className="btn btn-primary">Add to Favorites</button>
+                        <button 
+                        className="btn btn-primary"
+                        onClick={addWordToFavorites}
+                        >
+                            Add to Favorites
+                        </button>
                     }
 
                     </div>
