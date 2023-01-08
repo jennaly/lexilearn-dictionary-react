@@ -39,6 +39,8 @@ function App() {
 
       <Favorites
         favoriteWords={favoriteWords}
+        setWordData={setWordData}
+        setCardTitle={setCardTitle} 
       />
       
     </div>
