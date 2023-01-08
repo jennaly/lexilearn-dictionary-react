@@ -1,19 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 
-const Searchbar = ({ searchWord, setSearchWord, setWordData, setCardTitle }) => {
-    const getWordData = async (word) => {
-        const res = await fetch (
-            `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`, {
-                
-            headers: {
-              'Authorization': `Token ${import.meta.env.REACT_APP_OWL_API_KEY}`,
-            }
-          }
-        )
-    
-        const data = await res.json();
-        
+const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setCardTitle }) => {
+     
+    const handleSubmit =  async event => {
+        event.preventDefault();
+        const data = await getWordData(searchWord);
+
         if (data.definitions) {
             setWordData(data.definitions);
             setCardTitle(data.word);
@@ -21,13 +13,6 @@ const Searchbar = ({ searchWord, setSearchWord, setWordData, setCardTitle }) => 
             setWordData([])
             setCardTitle(searchWord)
         }
-       
-    }
-    
-      
-    const handleSubmit =  async event => {
-        event.preventDefault();
-        await getWordData(searchWord);
     }
 
     return (

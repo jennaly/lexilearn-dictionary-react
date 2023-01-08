@@ -16,12 +16,28 @@ function App() {
     localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
   }, [favoriteWords]);
 
+  const getWordData = async (word) => {
+    const res = await fetch (
+        `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`, {
+            
+        headers: {
+          'Authorization': `Token ${import.meta.env.REACT_APP_OWL_API_KEY}`,
+        }
+      }
+    )
+
+    const data = await res.json();
+
+    return data; 
+
+  }
  
   return (
     <div>
       <h1>Lexi &bull; Learn</h1>
 
       <Searchbar 
+        getWordData={getWordData}
         searchWord={searchWord} 
         setSearchWord={setSearchWord} 
         setWordData={setWordData}
@@ -39,6 +55,7 @@ function App() {
 
       <Favorites
         favoriteWords={favoriteWords}
+        getWordData={getWordData}
         setWordData={setWordData}
         setCardTitle={setCardTitle} 
       />
