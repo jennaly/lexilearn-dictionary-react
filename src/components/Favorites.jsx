@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Favorites = ({ favoriteWords }) => {
-    console.log(favoriteWords)
+
     return (
         <div>
             { favoriteWords.length > 0 && favoriteWords.map((word, index) => {
