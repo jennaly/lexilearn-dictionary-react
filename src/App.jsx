@@ -4,12 +4,18 @@ import Card from './components/Card';
 import Favorites from './components/Favorites';
 
 function App() {
-  const savedFavoriteWords = JSON.parse(localStorage.getItem('favoriteWords'))
+
+  const savedFavoriteWords = JSON.parse(localStorage.getItem('favoriteWords'));
 
   const [searchWord, setSearchWord] = useState("");
   const [wordData, setWordData] = useState([]);
   const [cardTitle, setCardTitle] = useState("");
-  const [favoriteWords, setFavoriteWords] = useState(savedFavoriteWords);
+  const [favoriteWords, setFavoriteWords] = useState(savedFavoriteWords || []);
+
+  useEffect(() => {
+    localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
+  }, [favoriteWords]);
+
  
   return (
     <div>
