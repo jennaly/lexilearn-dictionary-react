@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Favorites = ({ favoriteWords }) => {
+
+    useEffect(() => {
+        localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
+      }, [favoriteWords]);
 
     return (
         <div>
