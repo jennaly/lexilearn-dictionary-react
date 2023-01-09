@@ -15,14 +15,16 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords }) => {
     }
 
     const addWordToFavorites = () => {
-        const definitions = wordData.map(e => e.definition);
-    
+        const definitions = wordData.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
+        console.log(definitions)
         const entry = {
             "term": cardTitle,
             "definitions": [
                 ...definitions
             ]
         }
+
+        console.log(entry)
 
         setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry])
     }
