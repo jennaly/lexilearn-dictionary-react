@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import Searchbar from './components/Searchbar';
 import Card from './components/Card';
 import Favorites from './components/Favorites';
-import CSVButton from './components/CSVButton';
+import DownloadSet from './components/DownloadSet';
+import DownloadReport from './components/DownloadReport';
 
 function App() {
 
@@ -66,10 +67,13 @@ function App() {
         setCardTitle={setCardTitle} 
       />
 
-      <CSVButton 
+      <DownloadSet 
         favoriteWords={favoriteWords}
       />
     
+      <DownloadReport
+        favoriteWords={favoriteWords}
+      />
       
     </div>
   )

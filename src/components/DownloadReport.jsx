@@ -1,7 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-
-const CSVButton = ({ favoriteWords }) => {
+const DownloadReport = ({ favoriteWords }) => {
 
     const downloadFile = ({ data, fileName, fileType }) => {
         const blob = new Blob([data], { type: fileType })
@@ -22,16 +21,13 @@ const CSVButton = ({ favoriteWords }) => {
         e.preventDefault()
       
         // Headers for each column
-        let headers = ['term', 'definitions']
+        let headers = ['term', 'difficulty']
       
         // Convert users data to a csv
         let vocabWordsCsv = favoriteWords.reduce((acc, word) => {
-          const { term, definitions } = word;
+          const { term, difficulty } = word;
     
-          // Escape commas in definition strings
-          const newDefinitions = definitions.map(definition => `"${definition}"`)
-    
-          acc.push([term, newDefinitions.join(",")])
+          acc.push([term, difficulty])
           return acc
         }, [])
 
@@ -39,7 +35,7 @@ const CSVButton = ({ favoriteWords }) => {
       
         downloadFile({
           data:  [headers, ...vocabWordsCsv].join('\n'),
-          fileName: `${todayDate}-StudySet.csv`,
+          fileName: `${todayDate}-TeacherReport.csv`,
           fileType: 'text/csv',
         })
     }
@@ -47,10 +43,10 @@ const CSVButton = ({ favoriteWords }) => {
     return (
         <div>
             <button type='button' onClick={exportToCsv}>
-            Export to CSV
+            Download Teacher's Report
             </button>
         </div>
     )
 }
 
-export default CSVButton
+export default DownloadReport
