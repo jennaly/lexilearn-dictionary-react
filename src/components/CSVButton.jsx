@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const CSVButton = ({ favoriteWords }) => {
 
     const downloadFile = ({ data, fileName, fileType }) => {
@@ -33,10 +34,12 @@ const CSVButton = ({ favoriteWords }) => {
           acc.push([term, newDefinitions.join(",")])
           return acc
         }, [])
+
+        const todayDate = new Date().toISOString().slice(0, 10);
       
         downloadFile({
           data:  [headers, ...vocabWordsCsv].join('\n'),
-          fileName: 'LexiLearn-vocabWords.csv',
+          fileName: `${todayDate}-StudySet.csv`,
           fileType: 'text/csv',
         })
     }
