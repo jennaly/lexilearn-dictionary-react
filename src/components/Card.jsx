@@ -2,7 +2,7 @@ import React from 'react';
 import Illustration from './Illustration';
 import CardBody from './CardBody';
 
-const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords }) => {
+const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty }) => {
 
     const handleFavorite = () => {
         for (const word of favoriteWords) {
@@ -16,17 +16,16 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords }) => {
 
     const addWordToFavorites = () => {
         const definitions = wordData.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
-        console.log(definitions)
         const entry = {
             "term": cardTitle,
             "definitions": [
                 ...definitions
-            ]
+            ],
+            "difficulty": wordDifficulty,
         }
 
-        console.log(entry)
-
         setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry])
+        console.log(favoriteWords)
     }
 
     const removeWordFromFavorites = () => {

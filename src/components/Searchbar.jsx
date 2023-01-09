@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setCardTitle }) => {
+const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle }) => {
      
     const handleSubmit =  async event => {
         event.preventDefault();
@@ -9,6 +9,7 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setCar
         if (data.definitions) {
             setWordData(data.definitions);
             setCardTitle(data.word);
+            setWordDifficulty(data.difficulty);
         } else {
             setWordData([])
             setCardTitle(searchWord)
