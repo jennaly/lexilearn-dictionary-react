@@ -22,7 +22,7 @@ const DownloadSet = ({ favoriteWords }) => {
         e.preventDefault()
       
         // Headers for each column
-        let headers = ['Term', 'Definition']
+        let headers = ['Term', 'Definitions']
       
         // Convert users data to a csv
         let vocabWordsCsv = favoriteWords.reduce((acc, word) => {
