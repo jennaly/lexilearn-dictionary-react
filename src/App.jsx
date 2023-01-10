@@ -23,13 +23,8 @@ function App() {
 
   const getWordData = async (word) => {
     const res = await fetch (
-        `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`, {
-            
-        headers: {
-          'Authorization': `Token ${import.meta.env.REACT_APP_OWL_API_KEY}`,
-        }
-      }
-    )
+        `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`
+      )
 
     const data = await res.json();
 
