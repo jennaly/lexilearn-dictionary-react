@@ -12,7 +12,7 @@ const CardBody = ({ wordData }) => {
 
                         {/* not all definitions has an accompanying example */}
                         { definition.example && 
-                            <p className="text-yellow-500 text-2xl">"{definition.example}"</p>
+                            <p className="text-yellow-500 text-2xl">Example: "{definition.example}"</p>
                         }
 
                     </div>
