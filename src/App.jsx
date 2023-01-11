@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import Searchbar from './components/Searchbar';
 import Card from './components/Card';
 import Favorites from './components/Favorites';
-import DownloadSet from './components/DownloadSet';
-import DownloadReport from './components/DownloadReport';
+import DownloadButtons from './components/DownloadButtons';
 
 function App() {
 
@@ -60,16 +59,13 @@ function App() {
 
       <Favorites
         favoriteWords={favoriteWords}
+        setFavoriteWords={setFavoriteWords}
         getWordData={getWordData}
         setWordData={setWordData}
         setCardTitle={setCardTitle} 
       />
 
-      <DownloadSet 
-        favoriteWords={favoriteWords}
-      />
-    
-      <DownloadReport
+      <DownloadButtons
         favoriteWords={favoriteWords}
       />
       
