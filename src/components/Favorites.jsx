@@ -33,6 +33,14 @@ const Favorites = ({ favoriteWords, setFavoriteWords, getWordData, setWordData, 
                             </div>
                         </div>
             })}
+
+            { !favoriteWords.length &&
+                <div 
+                    className="inline-block mx-4 py-4 px-8 font-gaegu text-yellow-700 text-xl sticky-note max-w-xs text-center" 
+                    >
+                        <span className="p-2">Add your favorite words to make a study set!</span>
+                </div>
+            }
         </div>
     )
 }
