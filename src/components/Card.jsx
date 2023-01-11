@@ -31,7 +31,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
 
         setFavoriteWords(newFavoritesList);
     }
-    
+
     return (
         <div>
             {cardTitle.length > 0 &&
@@ -43,19 +43,21 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                     <div className="card-body">
 
                         <div className="flex justify-between items-center">
-                            <h2 className="card-title font-fredoka-one text-6xl underline-offset-14 w-full pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700 ">
-                                
-                                {cardTitle}
+                            {wordData.length > 0 &&
+                                <h2 className="card-title font-fredoka-one text-6xl underline-offset-14 w-full pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700 ">
+                                    
+                                    {cardTitle}
 
-                                {wordData.length > 0 && wordData[0].emoji && 
-                                    <span>{wordData[0].emoji}</span>
-                                }
-                            </h2>
+                                    {wordData.length > 0 && wordData[0].emoji && 
+                                        <span>{wordData[0].emoji}</span>
+                                    }
+                                </h2>
+                            }   
 
                             {!wordData.length && 
-                                <figure className="w-2/5">
+                                <figure className="w-full">
                                     <img 
-                                    src="https://placeimg.com/400/400/arch"
+                                    src="../../wordNotFound.png"
                                     alt="Error Message Picture"
                                     className="rounded-full"
                                     />

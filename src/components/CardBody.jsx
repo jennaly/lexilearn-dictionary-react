@@ -20,7 +20,7 @@ const CardBody = ({ wordData }) => {
             })}
 
             { !wordData.length && 
-                <p>No word in database</p>
+                <p className="font-gaegu text-yellow-700 text-2xl">We don't have the word you're searching for. Please revise your search or enter another word, thank you!</p>
             }
 
         </div>
