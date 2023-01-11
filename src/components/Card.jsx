@@ -44,14 +44,28 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
 
                         <div className="flex flex-col lg:flex-row justify-between items-center">
                             {wordData.length > 0 &&
-                                <h2 className="card-title font-fredoka-one text-4xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
-                                    
-                                    {cardTitle}
+                                <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
 
-                                    {wordData.length > 0 && wordData[0].emoji && 
-                                        <span>{wordData[0].emoji}</span>
+                                    <div className="w-full flex gap-2 ">
+                                        <h2>{cardTitle}</h2>
+
+                                        {wordData.length > 0 && wordData[0].emoji && 
+                                            <span>{wordData[0].emoji}</span>
+                                        }
+                                    </div>
+
+                                    {wordData.length > 0 && 
+                                        <button
+                                        onClick={handleFavorite}
+                                        className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100"
+                                        data-tip="Save your favorite words to your study set"
+                                        >
+                                            {isFavorite && <AiFillStar style={{ width: '40px', height: '40px', color: '#EBD678'}} />}
+                                            {!isFavorite && <AiOutlineStar style={{ width: '40px', height: '40px', color: '#EBD678'}} />}
+                                        </button>
                                     }
-                                </h2>
+
+                                </div>
                             }   
 
                             {!wordData.length && 
@@ -76,21 +90,6 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                         </div>
 
                         <CardBody wordData={wordData} />
-
-                        <div className="card-actions justify-end">
-                        
-                        {wordData.length > 0 && 
-                            <button
-                            onClick={handleFavorite}
-                            className="flex items-center gap-2 uppercase font-gaegu text-lg bg-yellow-700 hover:bg-yellow-800 text-yellow-200"
-                            >
-                                {isFavorite && <AiFillStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}
-                                {!isFavorite && <AiOutlineStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}
-                                Save
-                            </button>
-                        }
-                    
-                        </div>
 
                     </div>
                 </div>
