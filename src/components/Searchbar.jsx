@@ -28,7 +28,7 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
                 />
                 <button 
                 type="submit"
-                className="bg-yellow-700 m-2 rounded-full text-base-100 tracking-wider"
+                className="bg-yellow-700 m-2 rounded-full text-base-100 tracking-widest font-gaegu hover:bg-yellow-800"
                 >
                     Search
                     </button>
