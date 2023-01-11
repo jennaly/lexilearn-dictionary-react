@@ -24,7 +24,6 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
         }
 
         setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry])
-        console.log(favoriteWords)
     }
 
     const removeWordFromFavorites = () => {
