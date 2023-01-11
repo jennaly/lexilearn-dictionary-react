@@ -18,7 +18,7 @@ const Favorites = ({ favoriteWords, setFavoriteWords, getWordData, setWordData, 
     }
 
     return (
-        <div className="max-w-sm my-5 lg:max-w-xl mx-auto lg:mt-10 lg:mb-8 max-w-xl flex flex-wrap gap-8 justify-center lg:mt-10">
+        <div className="max-w-sm my-5 lg:max-w-xl mx-auto flex flex-wrap gap-8 justify-center">
             { favoriteWords.length > 0 && favoriteWords.map((word, index) => {
                 return <div 
                         key={index}

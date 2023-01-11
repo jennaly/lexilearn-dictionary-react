@@ -17,9 +17,9 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
     }
 
     return (
-        <div className="max-w-sm my-5 mx-8 lg:max-w-xl mx-auto lg:mt-10 lg:mb-8">
+        <div className="max-w-sm my-6 mx-8 lg:max-w-xl mx-auto">
             <form onSubmit={handleSubmit} className="flex flex-row bg-base-100 rounded-full items-center">
-                <img src="../../search-icon.png" className="h-12 aspect-auto" />
+                <img src="../../search-icon.png" className="h-11 aspect-auto" />
                 <input 
                 type="text"
                 onChange={(e => setSearchWord(e.target.value))}
@@ -28,7 +28,7 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
                 />
                 <button 
                 type="submit"
-                className="bg-yellow-700 m-1 lg:m-2 rounded-full text-base-100 tracking-widest font-gaegu hover:bg-yellow-800"
+                className="bg-yellow-700 m-1 rounded-full text-base-100 tracking-widest font-gaegu hover:bg-yellow-800"
                 >
                     Search
                     </button>

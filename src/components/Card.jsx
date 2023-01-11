@@ -36,15 +36,15 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
         <div>
             {cardTitle.length > 0 &&
 
-            <div className="max-w-sm my-5 mx-8 lg:max-w-xl mx-auto">
+            <div className="max-w-sm mb-4 mx-8 lg:max-w-xl mx-auto">
                 
                 <div className="card bg-base-100 shadow-xl max-h-[610px]">
 
-                    <div className="card-body">
+                    <div className="p-5">
 
                         <div className="flex flex-col lg:flex-row justify-between items-center">
                             {wordData.length > 0 &&
-                                <h2 className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
+                                <h2 className="card-title font-fredoka-one text-4xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
                                     
                                     {cardTitle}
 

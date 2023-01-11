@@ -65,7 +65,7 @@ const DownloadButtons = ({ favoriteWords }) => {
     }
 
     return (
-        <div className="flex max-w-sm lg:max-w-xl mx-auto justify-center gap-5 m-10 text-sm lg:text-base">
+        <div className="flex max-w-sm lg:max-w-xl mx-auto justify-center gap-5 m-5 text-sm lg:text-base">
             <button 
             type='button' 
             onClick={exportToStudySetCsv}
