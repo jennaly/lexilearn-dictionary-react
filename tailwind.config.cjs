@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend:  {
+      fontFamily: {
+        'fredoka-one': ['Fredoka One', 'cursive'],
+        'gaegu': ['Gaegu', 'cursive']
+      },
+    },
   },
   daisyui: {
     themes: false,
