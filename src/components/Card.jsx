@@ -82,7 +82,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                         {wordData.length > 0 && 
                             <button
                             onClick={handleFavorite}
-                            className="flex items-center gap-2 uppercase font-gaegu text-xl bg-yellow-800 text-yellow-200"
+                            className="flex items-center gap-2 uppercase font-gaegu text-xl bg-yellow-700 hover:bg-yellow-800 text-yellow-200"
                             >
                                 {isFavorite && <AiFillStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}
                                 {!isFavorite && <AiOutlineStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}
