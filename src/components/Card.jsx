@@ -74,9 +74,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                             }
                         </div>
 
-                        <div className="max-h-[300px] overflow-auto mt-4 mb-2">
-                            <CardBody wordData={wordData} />
-                        </div>
+                        <CardBody wordData={wordData} />
 
                         <div className="card-actions justify-end">
                         
