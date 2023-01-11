@@ -38,7 +38,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
 
             <div className="max-w-sm mb-4 mx-8 lg:max-w-xl mx-auto">
                 
-                <div className="card bg-base-100 shadow-xl max-h-[610px]">
+                <div className="card bg-base-100 shadow-xl lg:h-[375px]">
 
                     <div className="p-5">
 
@@ -69,11 +69,10 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                             }   
 
                             {!wordData.length && 
-                                <figure className="w-full">
+                                <figure className="mx-auto w-10/12">
                                     <img 
                                     src="../../wordNotFound.png"
                                     alt="Error Message Picture"
-                                    className="rounded-full"
                                     />
                                 </figure>
                             }
