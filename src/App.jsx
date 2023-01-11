@@ -33,8 +33,11 @@ function App() {
   }
  
   return (
-    <div>
-      <h1>Lexi &bull; Learn</h1>
+    <div className="h-screen w-screen">
+
+      <div className="pt-10">
+        <h1 className="font-fredoka-one font-semibold uppercase text-yellow-700 tracking-widest text-7xl text-center">Lexi &bull; Learn</h1>
+      </div>
 
       <Searchbar 
         getWordData={getWordData}
