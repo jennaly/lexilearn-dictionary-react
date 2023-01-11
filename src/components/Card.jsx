@@ -28,7 +28,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
     }
 
     const removeWordFromFavorites = () => {
-        const newFavoritesList = favoriteWords.filter(word => word.term !== cardTitle);
+        const newFavoritesList = favoriteWords.filter(favoriteWord => favoriteWord.term !== cardTitle);
 
         setFavoriteWords(newFavoritesList);
     }
