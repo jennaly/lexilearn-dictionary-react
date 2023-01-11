@@ -2,7 +2,7 @@ import React from 'react'
 
 const CardBody = ({ wordData }) => {
     return (
-        <div className="max-h-[250px] lg:max-h-[300px] overflow-auto mt-4 mb-2 text-xl lg:text-2xl">
+        <div className="max-h-[250px] lg:max-h-[300px] overflow-auto mt-4 mb-2 text-lg lg:text-xl">
             { wordData.length > 0 && wordData.map((definition, index) => {
                 return (
                     <div key={index} className="flex flex-col font-gaegu text-yellow-700 my-4 lg:my-6">
