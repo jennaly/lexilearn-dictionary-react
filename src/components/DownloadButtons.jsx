@@ -65,11 +65,11 @@ const DownloadButtons = ({ favoriteWords }) => {
     }
 
     return (
-        <div className="flex max-w-xl mx-auto justify-center gap-5 m-10">
+        <div className="flex max-w-sm lg:max-w-xl mx-auto justify-center gap-5 m-10 text-sm lg:text-base">
             <button 
             type='button' 
             onClick={exportToStudySetCsv}
-            className="rounded-full outline outline-1 bg-yellow-700 outline-yellow-700 hover:border hover:border-yellow-800 hover:bg-yellow-800 font-fredoka-one text-base-100 uppercase"
+            className="rounded-md lg:rounded-full outline outline-1 bg-yellow-700 outline-yellow-700 hover:border hover:border-yellow-800 hover:bg-yellow-800 font-fredoka-one text-base-100 uppercase"
             >
                 Download Study Set
             </button>
@@ -77,7 +77,7 @@ const DownloadButtons = ({ favoriteWords }) => {
             <button 
             type='button' 
             onClick={exportToReportCsv}
-            className="rounded-full outline outline-1 outline-yellow-700 hover:border hover:border-yellow-700 text-yellow-700 font-fredoka-one uppercase"
+            className="lg:rounded-full outline outline-1 outline-yellow-700 hover:border hover:border-yellow-700 text-yellow-700 font-fredoka-one uppercase"
             >
                 Download Teacher's Report
             </button>

@@ -48,10 +48,10 @@ function App() {
   }
  
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-screen px-5">
 
       <div className="pt-10">
-        <h1 className="font-fredoka-one font-semibold uppercase text-yellow-700 tracking-widest text-7xl text-center">
+        <h1 className="font-fredoka-one font-semibold uppercase text-yellow-700 tracking-widest text-5xl lg:text-7xl text-center">
           <a href="/" className="text-yellow-700 hover:text-yellow-800">
           Lexi &bull; Learn
           </a>

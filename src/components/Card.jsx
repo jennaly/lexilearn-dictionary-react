@@ -36,15 +36,15 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
         <div>
             {cardTitle.length > 0 &&
 
-            <div className="max-w-xl mx-auto">
+            <div className="max-w-sm my-5 mx-8 lg:max-w-xl mx-auto">
                 
-                <div className="card bg-base-100 shadow-xl">
+                <div className="card bg-base-100 shadow-xl max-h-[600px]">
 
                     <div className="card-body">
 
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col lg:flex-row justify-between items-center">
                             {wordData.length > 0 &&
-                                <h2 className="card-title font-fredoka-one text-6xl underline-offset-14 w-full pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700 ">
+                                <h2 className="card-title font-fredoka-one text-4xl lg:text-6xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
                                     
                                     {cardTitle}
 
@@ -65,7 +65,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                             }
 
                             {wordData.length > 0 && wordData[0].image_url &&
-                            <figure className="w-2/5">
+                            <figure className="mt-4 w-1/2 lg:w-2/5 lg:mt-0">
                                 <img 
                                 src={`${wordData[0].image_url}`} 
                                 alt={`Illustration of ${cardTitle}`}
@@ -82,7 +82,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                         {wordData.length > 0 && 
                             <button
                             onClick={handleFavorite}
-                            className="flex items-center gap-2 uppercase font-gaegu text-xl bg-yellow-700 hover:bg-yellow-800 text-yellow-200"
+                            className="flex items-center gap-2 uppercase font-gaegu text-lg lg:text-xl bg-yellow-700 hover:bg-yellow-800 text-yellow-200"
                             >
                                 {isFavorite && <AiFillStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}
                                 {!isFavorite && <AiOutlineStar style={{ width: '20px', height: '20px', color: 'yellow'}} />}

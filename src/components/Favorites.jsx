@@ -18,12 +18,12 @@ const Favorites = ({ favoriteWords, setFavoriteWords, getWordData, setWordData, 
     }
 
     return (
-        <div className="max-w-xl mx-auto flex flex-wrap gap-8 justify-center mt-10">
+        <div className="max-w-sm my-5 lg:max-w-xl mx-auto lg:mt-10 lg:mb-8 max-w-xl flex flex-wrap gap-8 justify-center lg:mt-10">
             { favoriteWords.length > 0 && favoriteWords.map((word, index) => {
                 return <div 
                         key={index}
                         onClick={() => handleSubmit(favoriteWords[index].term)}
-                        className="inline-block mx-4 py-4 px-8 font-gaegu text-yellow-700 text-xl sticky-note relative" 
+                        className="inline-block lg:mx-4 py-4 px-8 font-gaegu text-yellow-700 text-xl sticky-note relative" 
                         >
                             <span className="p-2">{word.term}</span>
                             <div className="absolute -right-2 -top-2">
