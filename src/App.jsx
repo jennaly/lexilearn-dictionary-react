@@ -14,6 +14,22 @@ function App() {
   const [wordDifficulty, setWordDifficulty] = useState(0);
   const [cardTitle, setCardTitle] = useState("");
   const [favoriteWords, setFavoriteWords] = useState(savedFavoriteWords || []);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const checkIsFavorite = () => {
+    console.log(favoriteWords)
+    for (const word of favoriteWords) {
+      if (word.term === cardTitle) {
+        setIsFavorite(true);
+        return;
+      } 
+    }
+    setIsFavorite(false);
+  }
+
+  useEffect(() => {
+    checkIsFavorite();
+  }, [wordData, favoriteWords]);
 
 
   useEffect(() => {
@@ -59,6 +75,7 @@ function App() {
         cardTitle={cardTitle}
         favoriteWords={favoriteWords}
         setFavoriteWords={setFavoriteWords}
+        isFavorite={isFavorite}
       />
 
       <Favorites
