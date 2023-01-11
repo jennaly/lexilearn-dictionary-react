@@ -69,7 +69,7 @@ const DownloadButtons = ({ favoriteWords }) => {
             <button 
             type='button' 
             onClick={exportToStudySetCsv}
-            className="rounded-md lg:rounded-full outline outline-1 bg-yellow-700 outline-yellow-700 hover:border hover:border-yellow-800 hover:bg-yellow-800 font-fredoka-one text-base-100 uppercase"
+            className="lg:rounded-full outline outline-1 bg-yellow-700 outline-yellow-700 hover:border hover:border-yellow-800 hover:bg-yellow-800 font-fredoka-one text-base-100 uppercase"
             >
                 Download Study Set
             </button>
