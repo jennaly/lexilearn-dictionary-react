@@ -24,7 +24,7 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
                 type="text"
                 onChange={(e => setSearchWord(e.target.value))}
                 placeholder="Type here" 
-                className="w-full bg-base-100 mx-1 lg:mx-2 focus:outline-none font-gaegu text-yellow-700 text-xl" 
+                className="w-full bg-base-100 mx-1 lg:mx-2 focus:outline-none font-gaegu text-yellow-700 text-xl lg:text-2xl" 
                 />
                 <button 
                 type="submit"
