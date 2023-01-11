@@ -35,7 +35,11 @@ function App() {
     <div className="h-screen w-screen">
 
       <div className="pt-10">
-        <h1 className="font-fredoka-one font-semibold uppercase text-yellow-700 tracking-widest text-7xl text-center">Lexi &bull; Learn</h1>
+        <h1 className="font-fredoka-one font-semibold uppercase text-yellow-700 tracking-widest text-7xl text-center">
+          <a href="/" className="text-yellow-700 hover:text-yellow-800">
+          Lexi &bull; Learn
+          </a>
+        </h1>
       </div>
 
       <Searchbar 
