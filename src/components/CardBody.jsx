@@ -5,14 +5,14 @@ const CardBody = ({ wordData }) => {
         <div>
             { wordData.length > 0 && wordData.map((definition, index) => {
                 return (
-                    <div key={index}>
+                    <div key={index} className="flex flex-col font-gaegu text-yellow-700 my-6">
 
-                        <span>{definition.type}</span>
-                        <p>{definition.definition}</p>
+                        <span className="uppercase text-2xl">{definition.type}</span>
+                        <p className="text-2xl">{definition.definition}</p>
 
                         {/* not all definitions has an accompanying example */}
                         { definition.example && 
-                            <p>{definition.example}</p>
+                            <p className="text-yellow-500 text-2xl">"{definition.example}"</p>
                         }
 
                     </div>
