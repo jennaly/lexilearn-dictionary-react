@@ -57,7 +57,7 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                                     {wordData.length > 0 && 
                                         <button
                                         onClick={handleFavorite}
-                                        className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100"
+                                        className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100 outline-0 focus:outline-0 focus-visible:outline-0 hover:border-0"
                                         data-tip="Save your favorite words to your study set"
                                         >
                                             {isFavorite && <AiFillStar style={{ width: '40px', height: '40px', color: '#EBD678'}} />}
