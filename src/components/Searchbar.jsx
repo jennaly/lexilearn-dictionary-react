@@ -17,15 +17,21 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="max-w-xl mx-auto mt-10 mb-8">
+            <form onSubmit={handleSubmit} className="flex flex-row bg-base-100 rounded-full text-base items-center">
+                <img src="../../search-icon.png" className="h-12 aspect-auto" />
                 <input 
                 type="text"
                 onChange={(e => setSearchWord(e.target.value))}
                 placeholder="Type here" 
-                className="input w-full max-w-xs" 
+                className="w-full bg-base-100 mx-2 focus:outline-none" 
                 />
-                <button type="submit">Button</button>
+                <button 
+                type="submit"
+                className="bg-yellow-700 m-2 rounded-full text-base-100 tracking-wider"
+                >
+                    Search
+                    </button>
             </form>
         </div>
     )
