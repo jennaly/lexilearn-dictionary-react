@@ -1,5 +1,4 @@
 import React from 'react';
-import Illustration from './Illustration';
 import CardBody from './CardBody';
 
 const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty }) => {
@@ -36,21 +35,49 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
     
     return (
         <div>
-            {cardTitle.length > 0 && 
+            {cardTitle.length > 0 &&
 
-                <div className="card lg:card-side bg-base-100 shadow-xl">
-
-                    <Illustration wordData={wordData} />
+            <div className="max-w-xl mx-auto">
+                
+                <div className="card bg-base-100 shadow-xl">
 
                     <div className="card-body">
-                        <h2 className="card-title">{cardTitle}
-                            {wordData.length > 0 && wordData[0].emoji && 
-                                <span>{wordData[0].emoji}</span>
+
+                        <div className="flex justify-between items-center">
+                            <h2 className="card-title font-fredoka-one text-6xl underline-offset-14 w-full pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700 ">
+                                
+                                {cardTitle}
+
+                                {wordData.length > 0 && wordData[0].emoji && 
+                                    <span>{wordData[0].emoji}</span>
+                                }
+                            </h2>
+
+                            {!wordData.length && 
+                                <figure className="w-2/5">
+                                    <img 
+                                    src="https://placeimg.com/400/400/arch"
+                                    alt="Error Message Picture"
+                                    className="rounded-full"
+                                    />
+                                </figure>
                             }
-                        </h2>
-                        
-                        <CardBody wordData={wordData} />
-                        
+
+                            {wordData.length > 0 && wordData[0].image_url &&
+                            <figure className="w-2/5">
+                                <img 
+                                src={`${wordData[0].image_url}`} 
+                                alt={`Illustration of ${cardTitle}`}
+                                className="rounded-full border-dotted border-2 border-yellow-800 p-1"
+                                />
+                            </figure>
+                            }
+                        </div>
+
+                        <div className="max-h-[300px] overflow-auto mt-4 mb-2">
+                            <CardBody wordData={wordData} />
+                        </div>
+
                         <div className="card-actions justify-end">
                         
                         {wordData.length > 0 && 
@@ -69,8 +96,11 @@ const Card = ({  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDiffi
                     </div>
                 </div>
                 
+            </div>
+            
             }
         </div>
+
     )
 }
 
