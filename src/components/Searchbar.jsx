@@ -17,7 +17,7 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
     }
 
     return (
-        <div className="max-w-sm my-6 mx-8 lg:max-w-xl mx-auto">
+        <div className="max-w-sm my-6 lg:max-w-xl mx-auto">
             <form onSubmit={handleSubmit} className="flex flex-row bg-base-100 rounded-full items-center">
                 <img src="../../search-icon.png" className="h-11 aspect-auto" />
                 <input 
