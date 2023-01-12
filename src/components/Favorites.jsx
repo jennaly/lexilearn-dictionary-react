@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Favorites = ({ favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle }) => {
+const Favorites = ({ setLoading, favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle }) => {
       
     const handleSubmit =  async (word) => {
+        setLoading(true);
+
         const data = await getWordData(word);
-       
+        setLoading(false);
         setWordData(data.definitions);
         setCardTitle(data.word);
     }

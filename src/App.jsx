@@ -15,6 +15,7 @@ function App() {
   const [cardTitle, setCardTitle] = useState("");
   const [favoriteWords, setFavoriteWords] = useState(savedFavoriteWords || []);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const checkIsFavorite = () => {
     console.log(favoriteWords)
@@ -60,6 +61,8 @@ function App() {
 
       <Searchbar 
         getWordData={getWordData}
+        loading={loading}
+        setLoading={setLoading}
         setWordDifficulty={setWordDifficulty}
         searchWord={searchWord} 
         setSearchWord={setSearchWord} 
@@ -79,6 +82,8 @@ function App() {
       />
 
       <Favorites
+        loading={loading}
+        setLoading={setLoading}
         favoriteWords={favoriteWords}
         setFavoriteWords={setFavoriteWords}
         getWordData={getWordData}

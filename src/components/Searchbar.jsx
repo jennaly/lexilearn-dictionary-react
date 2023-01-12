@@ -1,10 +1,14 @@
 import React from 'react';
+import Loading from './Loading';
 
-const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle }) => {
+const Searchbar = ({ getWordData, loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle }) => {
      
     const handleSubmit =  async event => {
         event.preventDefault();
+        setLoading(true);
+
         const data = await getWordData(searchWord);
+        setLoading(false);
 
         if (data.definitions) {
             setWordData(data.definitions);
@@ -33,6 +37,9 @@ const Searchbar = ({ getWordData, searchWord, setSearchWord, setWordData, setWor
                     Search
                     </button>
             </form>
+            
+            {loading && <Loading />}
+            
         </div>
     )
 }
