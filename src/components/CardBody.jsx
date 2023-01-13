@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { useStateContext } from '../context/StateContext';
 
-const CardBody = ({ wordData }) => {
+const CardBody = () => {
+    const { wordData } = useStateContext();
+
     return (
         <div className="max-h-[250px] lg:h-[172px] overflow-auto text-lg lg:text-xl mt-4">
             { wordData.length > 0 && wordData.map((definition, index) => {

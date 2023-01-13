@@ -1,7 +1,9 @@
 import React from 'react';
+import { useStateContext } from '../context/StateContext';
 
-const Favorites = ({ setLoading, favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle }) => {
-      
+const Favorites = () => {
+    const { setLoading, favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle } = useStateContext();
+
     const handleSubmit =  async (word) => {
         setLoading(true);
 
