@@ -1,5 +1,5 @@
 import Layout from './components/Layout';
-import Title from './components/Title';
+
 import Searchbar from './components/Searchbar';
 import Card from './components/Card';
 import Favorites from './components/Favorites';
@@ -12,7 +12,6 @@ function App() {
   return (
     <StateContext>
       <Layout>
-        <Title />
         <Searchbar />
         <Card />
         <Favorites />
