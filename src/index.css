@@ -80,6 +80,11 @@ body {
   background-size: cover;
 }
 
+.layout {
+  padding: 0 1.25rem;
+  width: 100vw;
+}
+
 .sticky-note {
   background: rgb(235, 214, 120);
   box-shadow: 10px 8px 5px grey;
