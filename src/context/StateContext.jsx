@@ -14,6 +14,8 @@ export const StateContext = ({ children }) => {
     const [favoriteWords, setFavoriteWords] = useState([]);
     const [isFavorite, setIsFavorite] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    // temporary state until login/auth is set up
     const [user, setUser] = useState(true);
   
     useEffect(() => {
