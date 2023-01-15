@@ -6,18 +6,21 @@ import Favorites from './components/Favorites';
 import DownloadButtons from './components/DownloadButtons';
 
 import { WordContextProvider } from './context/WordContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
  
   return (
-    <WordContextProvider>
-      <Layout>
-        <Searchbar />
-        <Card />
-        <Favorites />
-        <DownloadButtons />
-      </Layout>
-    </WordContextProvider>
+    <AuthContext.Provider>
+      <WordContextProvider>
+        <Layout>
+          <Searchbar />
+          <Card />
+          <Favorites />
+          <DownloadButtons />
+        </Layout>
+      </WordContextProvider>
+    </AuthContext.Provider>
   )
 }
 
