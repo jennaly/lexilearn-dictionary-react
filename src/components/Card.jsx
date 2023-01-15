@@ -5,7 +5,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const Card = () => {
 
-    const {  wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useStateContext();
+    const { user, wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useStateContext();
 
     const handleFavorite = () => {
         if (isFavorite) {
@@ -26,13 +26,47 @@ const Card = () => {
             "difficulty": wordDifficulty,
         }
 
-        setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry])
+        if (user) {
+
+            const addWordToDB = async () => {
+
+                const res = await fetch("http://localhost:8882/api/favoriteWords/", {
+                    method: "POST",
+                    body: JSON.stringify(entry),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await res.json();
+                setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, data]);
+            }
+
+            addWordToDB();
+            return;
+        }
+
+        setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry]);
     }
 
     const removeWordFromFavorites = () => {
-        const newFavoritesList = favoriteWords.filter(favoriteWord => favoriteWord.term !== cardTitle);
+        const deletedWord = favoriteWords.find(word => word.term == cardTitle);
+        const newFavoritesList = favoriteWords.filter(favoriteWord => favoriteWord !== deletedWord);
 
-        setFavoriteWords(newFavoritesList);
+        setFavoriteWords(newFavoritesList);       
+
+        if (user) {
+            
+            const removeWordFromDB = async () => {
+                const { _id } = deletedWord;
+
+                const res = await fetch(`http://localhost:8882/api/favoriteWords/${_id}`, {
+                    method: "DELETE",
+                });
+            }
+
+            removeWordFromDB();
+        }
     }
 
     return (

@@ -4,31 +4,41 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
+    // temporarily not needed for the purpose of testing crud operations to mongodb
     const savedFavoriteWords = JSON.parse(localStorage.getItem('favoriteWords'));
 
     const [searchWord, setSearchWord] = useState("");
     const [wordData, setWordData] = useState([]);
     const [wordDifficulty, setWordDifficulty] = useState(0);
     const [cardTitle, setCardTitle] = useState("");
-    const [favoriteWords, setFavoriteWords] = useState(savedFavoriteWords || []);
+    const [favoriteWords, setFavoriteWords] = useState([]);
     const [isFavorite, setIsFavorite] = useState(false);
     const [loading, setLoading] = useState(false);
-  
-    const checkIsFavorite = () => {
-      console.log(favoriteWords)
-      for (const word of favoriteWords) {
-        if (word.term === cardTitle) {
-          setIsFavorite(true);
-          return;
-        } 
-      }
-      setIsFavorite(false);
-    }
+    const [user, setUser] = useState(true);
   
     useEffect(() => {
+      const getWordsFromDB = async () => {
+        const res = await fetch (
+          `http://localhost:8882/api/favoriteWords`
+        );
+        const data = await res.json();
+        setFavoriteWords(data);
+      }
+      getWordsFromDB();
+    }, []);
+  
+    useEffect(() => {
+      const checkIsFavorite = () => {
+        for (const word of favoriteWords) {
+          if (word.term === cardTitle) {
+            setIsFavorite(true);
+            return;
+          } 
+        }
+        setIsFavorite(false);
+      }
       checkIsFavorite();
     }, [wordData, favoriteWords]);
-  
   
     useEffect(() => {
       localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
@@ -48,6 +58,7 @@ export const StateContext = ({ children }) => {
     return (
         <Context.Provider
             value={{
+                user,
                 loading,
                 setLoading,
                 wordData,
