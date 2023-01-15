@@ -11,7 +11,7 @@ import { AuthContextProvider } from './context/AuthContext';
 function App() {
  
   return (
-    <AuthContext.Provider>
+    <AuthContextProvider>
       <WordContextProvider>
         <Layout>
           <Searchbar />
@@ -20,7 +20,7 @@ function App() {
           <DownloadButtons />
         </Layout>
       </WordContextProvider>
-    </AuthContext.Provider>
+    </AuthContextProvider>
   )
 }
 
