@@ -1,9 +1,9 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
 
 const DownloadButtons = () => {
 
-    const { favoriteWords } = useStateContext();
+    const { favoriteWords } = useWordContext();
 
     const todayDate = new Date().toISOString().slice(0, 10);
 

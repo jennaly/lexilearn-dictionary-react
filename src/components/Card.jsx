@@ -1,11 +1,11 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
 import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const Card = () => {
 
-    const { user, wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useStateContext();
+    const { user, wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useWordContext();
 
     const handleFavorite = () => {
         if (isFavorite) {

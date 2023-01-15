@@ -5,19 +5,19 @@ import Card from './components/Card';
 import Favorites from './components/Favorites';
 import DownloadButtons from './components/DownloadButtons';
 
-import { StateContext } from './context/StateContext';
+import { WordContextProvider } from './context/WordContext';
 
 function App() {
  
   return (
-    <StateContext>
+    <WordContextProvider>
       <Layout>
         <Searchbar />
         <Card />
         <Favorites />
         <DownloadButtons />
       </Layout>
-    </StateContext>
+    </WordContextProvider>
   )
 }
 

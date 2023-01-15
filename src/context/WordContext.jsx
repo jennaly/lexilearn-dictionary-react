@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const Context = createContext();
+const WordContext = createContext();
 
-export const StateContext = ({ children }) => {
+export const WordContextProvider = ({ children }) => {
 
     // temporarily not needed for the purpose of testing crud operations to mongodb
     const savedFavoriteWords = JSON.parse(localStorage.getItem('favoriteWords'));
@@ -58,7 +58,7 @@ export const StateContext = ({ children }) => {
     }
 
     return (
-        <Context.Provider
+        <WordContext.Provider
             value={{
                 user,
                 loading,
@@ -79,9 +79,9 @@ export const StateContext = ({ children }) => {
             }}
         >
             {children}
-        </Context.Provider>
+        </WordContext.Provider>
     )
 
 }  
 
-export const useStateContext = () => useContext(Context);
+export const useWordContext = () => useContext(WordContext);
