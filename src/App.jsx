@@ -12,30 +12,28 @@ function App() {
   const { user } = useAuthContext();
 
   return (
-    <Layout>
-      <BrowserRouter>
-        <Routes>
-          {!user && 
-            <Route 
-            path="/login"
-            element={ <Login />}
-            />
-          }  
-
-          {!user && 
-            <Route 
-            path="/signup"
-            element={<Signup />}
-          />
-          }  
-
+    <BrowserRouter>
+      <Routes>
+        {!user && 
           <Route 
-            path="/"
-            element={<Index />}
+          path="/login"
+          element={ <Login />}
           />
-        </Routes>
-      </BrowserRouter>
-    </Layout>
+        }  
+
+        {!user && 
+          <Route 
+          path="/signup"
+          element={<Signup />}
+        />
+        }  
+
+        <Route 
+          path="/"
+          element={<Layout><Index /></Layout>}
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

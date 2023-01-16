@@ -1,14 +1,15 @@
 import React from 'react';
-import Title from './Title';
+import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
     return (
-        <div className="layout">
-            <Title />
-
-            <main>
-                {children}
-            </main>
+        <div>
+            <Navbar />
+            <div className="layout">
+                <main>
+                    {children}
+                </main>
+            </div>
         </div>
     )
 }
