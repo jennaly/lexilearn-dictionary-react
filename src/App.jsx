@@ -1,26 +1,41 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import Layout from './components/Layout';
 
-import Searchbar from './components/Searchbar';
-import Card from './components/Card';
-import Favorites from './components/Favorites';
-import DownloadButtons from './components/DownloadButtons';
+import MainApp from './pages/MainApp';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
-import { WordContextProvider } from './context/WordContext';
-import { AuthContextProvider } from './context/AuthContext';
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
- 
+  const { user } = useAuthContext();
+
   return (
-    <AuthContextProvider>
-      <WordContextProvider>
-        <Layout>
-          <Searchbar />
-          <Card />
-          <Favorites />
-          <DownloadButtons />
-        </Layout>
-      </WordContextProvider>
-    </AuthContextProvider>
+    <Layout>
+      <BrowserRouter>
+        <Routes>
+          {!user && 
+            <Route 
+            path="/login"
+            element={ <Login />}
+            />
+          }  
+
+          {!user && 
+            <Route 
+            path="/signup"
+            element={<Signup />}
+          />
+          }  
+
+          <Route 
+            path="/"
+            element={<MainApp />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </Layout>
   )
 }
 
