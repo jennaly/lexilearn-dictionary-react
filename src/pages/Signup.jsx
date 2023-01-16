@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
-import Title from '../components/Title';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -14,8 +13,6 @@ const Signup = () => {
     }
     return (
         <div>
-            <Title />
-
             <form onSubmit={handleSubmit}>
                 <h2>Sign Up</h2>
 
