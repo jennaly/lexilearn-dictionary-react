@@ -29,7 +29,7 @@ const Navbar = () => {
                         </div>
                     }
                 </nav>
-                <Link to="/" className="text-yellow-700 hover:text-yellow-800"><Title /></Link>
+                <Link to="/"><Title /></Link>
             </div>
         </header>
     )
