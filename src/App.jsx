@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './components/Layout';
 
-import MainApp from './pages/MainApp';
+import Index from './pages/Index';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
@@ -31,7 +31,7 @@ function App() {
 
           <Route 
             path="/"
-            element={<MainApp />}
+            element={<Index />}
           />
         </Routes>
       </BrowserRouter>

@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import Favorites from '../components/Favorites';
 import DownloadButtons from '../components/DownloadButtons';
 
-const MainApp = () => {
+const Index = () => {
     return (
         <div>
             <Searchbar />
@@ -16,4 +16,4 @@ const MainApp = () => {
     )
 }
 
-export default MainApp
+export default Index
