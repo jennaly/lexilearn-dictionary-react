@@ -79,11 +79,15 @@ body {
   height: 100%;
   width: 100%;
   background-size: cover;
+  display: flex;
+  align-items: flex-start;
 }
 
 .layout {
   padding: 0 1.25rem;
   width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 .nav-bar {
   padding: 0 1.25rem;
