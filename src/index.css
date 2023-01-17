@@ -85,6 +85,9 @@ body {
   padding: 0 1.25rem;
   width: 100vw;
 }
+.nav-bar {
+  padding: 0 1.25rem;
+}
 
 .sticky-note {
   background: rgb(235, 214, 120);
