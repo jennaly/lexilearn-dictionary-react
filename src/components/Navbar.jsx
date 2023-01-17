@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <header>
-            <div>
+            <div className="nav-bar">
                 <nav>
                     {user && 
                         <div>
@@ -29,7 +29,7 @@ const Navbar = () => {
                         </div>
                     }
                 </nav>
-                <Link to="/"><Title /></Link>
+                <Title />
             </div>
         </header>
     )
