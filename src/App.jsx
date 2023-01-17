@@ -1,23 +1,37 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuthContext } from './hooks/useAuthContext';
+
 import Layout from './components/Layout';
 
-import Searchbar from './components/Searchbar';
-import Card from './components/Card';
-import Favorites from './components/Favorites';
-import DownloadButtons from './components/DownloadButtons';
-
-import { StateContext } from './context/StateContext';
+import Index from './pages/Index';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
- 
+  
+  const { user } = useAuthContext();
+
   return (
-    <StateContext>
+    <BrowserRouter>
       <Layout>
-        <Searchbar />
-        <Card />
-        <Favorites />
-        <DownloadButtons />
+        <Routes>
+          <Route 
+          path="/login"
+          element={ !user ? <Login /> : <Navigate to="/" />}
+          />
+      
+          <Route 
+          path="/signup"
+          element={ !user ? <Signup /> : <Navigate to="/" />}
+          />
+        
+          <Route 
+            path="/"
+            element={<Index />}
+          />
+       </Routes>
       </Layout>
-    </StateContext>
+    </BrowserRouter>
   )
 }
 

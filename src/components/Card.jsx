@@ -1,11 +1,13 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const Card = () => {
 
-    const { user, wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useStateContext();
+    const { wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useWordContext();
+    const { user } = useAuthContext();
 
     const handleFavorite = () => {
         if (isFavorite) {
@@ -29,24 +31,24 @@ const Card = () => {
         if (user) {
 
             const addWordToDB = async () => {
-
                 const res = await fetch("http://localhost:8882/api/favoriteWords/", {
                     method: "POST",
                     body: JSON.stringify(entry),
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`
                     }
                 });
                 
                 const data = await res.json();
+
                 setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, data]);
             }
-
             addWordToDB();
-            return;
-        }
 
-        setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry]);
+        } else {
+            setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry]);
+        }
     }
 
     const removeWordFromFavorites = () => {
@@ -62,6 +64,9 @@ const Card = () => {
 
                 const res = await fetch(`http://localhost:8882/api/favoriteWords/${_id}`, {
                     method: "DELETE",
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
                 });
             }
 

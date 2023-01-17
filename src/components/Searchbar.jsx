@@ -1,10 +1,10 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
 import Loading from './Loading';
 
 const Searchbar = () => {
 
-    const { getWordData, loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle } = useStateContext();
+    const { getWordData, loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle } = useWordContext();
      
     const handleSubmit =  async event => {
         event.preventDefault();

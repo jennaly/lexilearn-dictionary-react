@@ -1,8 +1,10 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Favorites = () => {
-    const { user, setLoading, favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle } = useStateContext();
+    const { setLoading, favoriteWords, setFavoriteWords, getWordData, setWordData, setCardTitle } = useWordContext();
+    const { user } = useAuthContext();
 
     const handleSubmit =  async (word) => {
         setLoading(true);
@@ -27,11 +29,13 @@ const Favorites = () => {
 
         const res = await fetch(`http://localhost:8882/api/favoriteWords/${id}`, {
             method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         });
 
     }
     
-
     return (
         <div className="max-w-sm my-5 lg:max-w-xl mx-auto flex flex-wrap gap-8 justify-center">
             { favoriteWords.length > 0 && favoriteWords.map((word, index) => {

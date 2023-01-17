@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStateContext } from '../context/StateContext';
+import { useWordContext } from '../context/WordContext';
 
 const CardBody = () => {
-    const { wordData } = useStateContext();
+    const { wordData } = useWordContext();
 
     return (
         <div className="max-h-[250px] lg:h-[172px] overflow-auto text-lg lg:text-xl mt-4">
