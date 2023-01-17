@@ -12,7 +12,6 @@ const Login = () => {
         await login(email, password);
     }
     return (
-        <div>
             <div className="mb-4 mt-6 lg:max-w-xl mx-auto">
                 
                 <div className="card lg:w-96 bg-base-100 shadow-xl lg:h-[375px] flex flex-col">
@@ -51,7 +50,6 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </div>
     )
 }
 
