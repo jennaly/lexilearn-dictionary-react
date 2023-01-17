@@ -27,7 +27,7 @@ function App() {
         
           <Route 
             path="/"
-            element={ user ? <Index /> : <Navigate to="/login" />}
+            element={<Index />}
           />
        </Routes>
       </Layout>
