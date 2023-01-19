@@ -86,7 +86,7 @@ const Card = () => {
 
                         <div className="flex flex-col lg:flex-row justify-between items-center">
                             {wordData.length > 0 &&
-                                <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
+                                <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 lg:mr-6 border-b-2 border-yellow-700 text-yellow-700">
 
                                     <div className="w-full flex gap-2 ">
                                         <h2>{cardTitle}</h2>
