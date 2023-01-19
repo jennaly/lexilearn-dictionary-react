@@ -4,8 +4,19 @@ import Loading from './Loading';
 
 const Searchbar = () => {
 
-    const { getWordData, loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle } = useWordContext();
-     
+    const { loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle } = useWordContext();
+    
+    const getWordData = async (word) => {
+        const res = await fetch (
+            `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`
+          )
+    
+        const data = await res.json();
+    
+        return data; 
+    
+    }
+
     const handleSubmit =  async event => {
         event.preventDefault();
         setLoading(true);

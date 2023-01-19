@@ -1,9 +1,9 @@
 import React from 'react';
-import { useWordContext } from '../context/WordContext';
+import { useFavoriteWordsContext } from '../hooks/useFavoriteWordsContext';
 
 const DownloadButtons = () => {
 
-    const { favoriteWords } = useWordContext();
+    const { favoriteWords } = useFavoriteWordsContext();
 
     const todayDate = new Date().toISOString().slice(0, 10);
 

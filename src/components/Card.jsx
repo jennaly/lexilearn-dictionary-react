@@ -1,26 +1,34 @@
 import React, {useState, useEffect} from 'react';
 import { useWordContext } from '../context/WordContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useFavoriteWordsContext } from "../hooks/useFavoriteWordsContext";
 import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import {  v1 as uuidv1 } from 'uuid';
 
 const Card = () => {
-
-    const { wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty } = useWordContext();
+    const { wordData, cardTitle, wordDifficulty } = useWordContext();
+    const { favoriteWords, dispatch } = useFavoriteWordsContext();
     const { user } = useAuthContext();
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        const checkIsFavorite = () => {
-          for (const word of favoriteWords) {
-            if (word.term === cardTitle) {
-              setIsFavorite(true);
-              return;
-            } 
-          }
-          setIsFavorite(false);
+        const checkIsFavorite = () => {  
+            if (!favoriteWords.length) {
+                setIsFavorite(false);
+            }
+
+            for (const word of favoriteWords) {
+                if (word.term === cardTitle) {
+                    setIsFavorite(true);
+                    return;
+                } 
+            }
+            setIsFavorite(false);
         }
+        
         checkIsFavorite();
+
     }, [wordData, favoriteWords]);
 
     const handleFavorite = () => {
@@ -43,7 +51,6 @@ const Card = () => {
         }
 
         if (user) {
-
             const addWordToDB = async () => {
                 const res = await fetch("http://localhost:8882/api/favoriteWords/", {
                     method: "POST",
@@ -55,21 +62,22 @@ const Card = () => {
                 });
                 
                 const data = await res.json();
-
-                setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, data]);
+    
+                if (res.ok) {
+                    dispatch({ type: 'CREATE_FAVORITE_WORD', payload: data });
+                }
             }
+
             addWordToDB();
 
         } else {
-            setFavoriteWords(prevFavoriteWords => [...prevFavoriteWords, entry]);
+            entry['_id'] = uuidv1();
+            dispatch({ type: 'CREATE_FAVORITE_WORD', payload: entry });
         }
     }
 
     const removeWordFromFavorites = () => {
         const deletedWord = favoriteWords.find(word => word.term == cardTitle);
-        const newFavoritesList = favoriteWords.filter(favoriteWord => favoriteWord !== deletedWord);
-
-        setFavoriteWords(newFavoritesList);       
 
         if (user) {
             
@@ -82,9 +90,18 @@ const Card = () => {
                         'Authorization': `Bearer ${user.token}`
                     }
                 });
+
+                const data = await res.json();
+                
+                if (res.ok) {
+                    dispatch({ type: "DELETE_FAVORITE_WORD", payload: data });
+               }
             }
 
             removeWordFromDB();
+
+        } else {
+            dispatch({ type: "DELETE_FAVORITE_WORD", payload: deletedWord });
         }
     }
 

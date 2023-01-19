@@ -4,13 +4,16 @@ import App from './App'
 import './index.css'
 import { WordContextProvider } from './context/WordContext';
 import { AuthContextProvider } from './context/AuthContext';
+import { FavoriteWordsContextProvider } from './context/FavoriteWordsContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <WordContextProvider>
-        <App />
-      </WordContextProvider>
+      <FavoriteWordsContextProvider>
+        <WordContextProvider>
+          <App />
+        </WordContextProvider>
+      </FavoriteWordsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
 )
