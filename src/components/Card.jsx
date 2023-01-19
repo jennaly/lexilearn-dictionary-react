@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useWordContext } from '../context/WordContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import CardBody from './CardBody';
@@ -6,8 +6,22 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const Card = () => {
 
-    const { wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty, isFavorite } = useWordContext();
+    const { wordData, cardTitle, favoriteWords, setFavoriteWords, wordDifficulty } = useWordContext();
     const { user } = useAuthContext();
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        const checkIsFavorite = () => {
+          for (const word of favoriteWords) {
+            if (word.term === cardTitle) {
+              setIsFavorite(true);
+              return;
+            } 
+          }
+          setIsFavorite(false);
+        }
+        checkIsFavorite();
+    }, [wordData, favoriteWords]);
 
     const handleFavorite = () => {
         if (isFavorite) {

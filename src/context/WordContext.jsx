@@ -10,7 +10,7 @@ export const WordContextProvider = ({ children }) => {
   const [wordDifficulty, setWordDifficulty] = useState(0);
   const [cardTitle, setCardTitle] = useState("");
   const [favoriteWords, setFavoriteWords] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
+  
   const [loading, setLoading] = useState(false);
 
   const { user } = useAuthContext();
@@ -41,18 +41,7 @@ export const WordContextProvider = ({ children }) => {
     }
   }, [user]);
 
-  useEffect(() => {
-    const checkIsFavorite = () => {
-      for (const word of favoriteWords) {
-        if (word.term === cardTitle) {
-          setIsFavorite(true);
-          return;
-        } 
-      }
-      setIsFavorite(false);
-    }
-    checkIsFavorite();
-  }, [wordData, favoriteWords]);
+  
 
   useEffect(() => {
     localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
@@ -86,8 +75,7 @@ export const WordContextProvider = ({ children }) => {
               setCardTitle,
               favoriteWords,
               setFavoriteWords,
-              isFavorite,
-              setIsFavorite,
+
           }}
       >
           {children}
