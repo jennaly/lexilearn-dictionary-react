@@ -12,7 +12,7 @@ const Favorites = ({ setLoading, setShowCard }) => {
 
     const getWordData = async (word) => {
         const res = await fetch (
-            `https://lexilearn-proxy-api.cyclic.app/api/dictionary/${word}`
+            `https://lexilearn-server.up.railway.app/api/dictionary/${word}`
           )
     
         const data = await res.json();
@@ -37,7 +37,7 @@ const Favorites = ({ setLoading, setShowCard }) => {
             const removeWordFromDB = async (word) => {
                 const { _id } = word;
 
-                const res = await fetch(`http://localhost:8882/api/favoriteWords/${_id}`, {
+                const res = await fetch(`https://lexilearn-server.up.railway.app/api/favoriteWords/${_id}`, {
                     method: "DELETE",
                     headers: {
                         'Authorization': `Bearer ${user.token}`

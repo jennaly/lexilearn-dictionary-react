@@ -52,7 +52,7 @@ const Card = ({ showCard }) => {
 
         if (user) {
             const addWordToDB = async () => {
-                const res = await fetch("http://localhost:8882/api/favoriteWords/", {
+                const res = await fetch("https://lexilearn-server.up.railway.app/api/favoriteWords", {
                     method: "POST",
                     body: JSON.stringify(entry),
                     headers: {
