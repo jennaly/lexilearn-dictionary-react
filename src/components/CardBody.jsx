@@ -1,12 +1,12 @@
 import React from 'react';
-import { useWordContext } from '../context/WordContext';
+import { useWordDataContext } from "../hooks/useWordDataContext";
 
 const CardBody = () => {
-    const { wordData } = useWordContext();
+    const { wordData } = useWordDataContext();
 
     return (
         <div className="max-h-[250px] lg:h-[172px] overflow-auto text-lg lg:text-xl mt-4">
-            { wordData.length > 0 && wordData.map((definition, index) => {
+            { wordData.definitions && wordData.definitions.map((definition, index) => {
                 return (
                     <div key={index} className="flex flex-col font-gaegu text-yellow-700 my-4">
 
@@ -22,7 +22,7 @@ const CardBody = () => {
                 )
             })}
 
-            { !wordData.length && 
+            { !wordData.definitions && 
                 <p className="font-gaegu text-yellow-700">We don't have the word you're searching for. Please revise your search or enter another word, thank you!</p>
             }
 

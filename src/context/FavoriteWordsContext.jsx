@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react'; 
+import { useAuthContext } from '../hooks/useAuthContext';
 
 export const FavoriteWordsContext = createContext();
 
@@ -22,7 +23,10 @@ export const favoriteWordsReducer = (state, action) => {
 };
 
 export const FavoriteWordsContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(favoriteWordsReducer, { favoriteWords: [] });
+    const { user } = useAuthContext();
+    const data = JSON.parse(localStorage.getItem('favoriteWords'))
+
+    const [state, dispatch] = useReducer(favoriteWordsReducer, { favoriteWords: user ? [] : data });
 
     return (
         <FavoriteWordsContext.Provider value={{ ...state, dispatch }}>

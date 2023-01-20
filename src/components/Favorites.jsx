@@ -1,44 +1,14 @@
-import React, {useEffect} from 'react';
-import { useWordContext } from '../context/WordContext';
+import React from 'react';
+
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useFavoriteWordsContext } from '../hooks/useFavoriteWordsContext';
+import { useWordDataContext } from "../hooks/useWordDataContext";
 
-const Favorites = () => {
-    const { setLoading, setWordData, setCardTitle } = useWordContext();
+const Favorites = ({ setLoading, setShowCard }) => {
+
     const { user } = useAuthContext();
     const { favoriteWords, dispatch } = useFavoriteWordsContext();
-
-    useEffect(() => {
-        localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
-    }, [favoriteWords]);
-
-    useEffect(() => {
-        const fetchWords = async () => {
-          const res = await fetch( `http://localhost:8882/api/favoriteWords`, {
-            headers: {
-              'Authorization': `Bearer ${user.token}`
-            }
-          });
-    
-          const data = await res.json();
-
-          if (res.ok) {
-            dispatch({ type: 'GET_FAVORITE_WORDS', payload: data });
-          }
-        };
-    
-        const getWordsLocally = () => {
-          const data = JSON.parse(localStorage.getItem('favoriteWords'));
-    
-          dispatch({ type: 'GET_FAVORITE_WORDS', payload: data });
-        };
-    
-        if (user) {
-          fetchWords();
-        } else {
-          getWordsLocally();
-        }
-    }, [user]);
+    const { dataDispatch } = useWordDataContext(); 
 
     const getWordData = async (word) => {
         const res = await fetch (
@@ -56,8 +26,8 @@ const Favorites = () => {
 
         const data = await getWordData(word);
         setLoading(false);
-        setWordData(data.definitions);
-        setCardTitle(data.word);
+        dataDispatch({ type: "GET_WORD_DATA", payload: data });
+        setShowCard(true);
     }
 
     const removeWordFromFavorites = (e, word) => {

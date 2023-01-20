@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { useWordContext } from '../context/WordContext';
+import { useWordDataContext } from "../hooks/useWordDataContext";
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useFavoriteWordsContext } from "../hooks/useFavoriteWordsContext";
 import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import {  v1 as uuidv1 } from 'uuid';
 
-const Card = () => {
-    const { wordData, cardTitle, wordDifficulty } = useWordContext();
+const Card = ({ showCard }) => {
+    const { wordData } = useWordDataContext();
     const { favoriteWords, dispatch } = useFavoriteWordsContext();
     const { user } = useAuthContext();
     const [isFavorite, setIsFavorite] = useState(false);
@@ -18,8 +18,8 @@ const Card = () => {
                 setIsFavorite(false);
             }
 
-            for (const word of favoriteWords) {
-                if (word.term === cardTitle) {
+            for (const favoriteWord of favoriteWords) {
+                if (favoriteWord.term === wordData.word) {
                     setIsFavorite(true);
                     return;
                 } 
@@ -41,13 +41,13 @@ const Card = () => {
     }
 
     const addWordToFavorites = () => {
-        const definitions = wordData.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
+        const definitions = wordData.definitions.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
         const entry = {
-            "term": cardTitle,
+            "term": wordData.word,
             "definitions": [
                 ...definitions
             ],
-            "difficulty": wordDifficulty,
+            "difficulty": wordData.difficulty,
         }
 
         if (user) {
@@ -73,11 +73,12 @@ const Card = () => {
         } else {
             entry['_id'] = uuidv1();
             dispatch({ type: 'CREATE_FAVORITE_WORD', payload: entry });
+            console.log(favoriteWords)
         }
     }
 
     const removeWordFromFavorites = () => {
-        const deletedWord = favoriteWords.find(word => word.term == cardTitle);
+        const deletedWord = favoriteWords.find(favoriteWord => favoriteWord.term == wordData.word);
 
         if (user) {
             
@@ -107,8 +108,7 @@ const Card = () => {
 
     return (
         <div>
-            {cardTitle.length > 0 &&
-
+        {showCard &&
             <div className="max-w-sm mb-4 mx-8 lg:max-w-xl mx-auto">
                 
                 <div className="card bg-base-100 shadow-xl lg:h-[375px]">
@@ -116,18 +116,18 @@ const Card = () => {
                     <div className="p-5">
 
                         <div className="flex flex-col lg:flex-row justify-between items-center">
-                            {wordData.length > 0 &&
+                            {wordData.definitions &&
                                 <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 lg:mr-6 border-b-2 border-yellow-700 text-yellow-700">
 
                                     <div className="w-full flex gap-2 ">
-                                        <h2>{cardTitle}</h2>
+                                        <h2>{wordData.word}</h2>
 
-                                        {wordData.length > 0 && wordData[0].emoji && 
-                                            <span>{wordData[0].emoji}</span>
+                                        {wordData.definitions && wordData.definitions[0].emoji && 
+                                            <span>{wordData.definitions[0].emoji}</span>
                                         }
                                     </div>
 
-                                    {wordData.length > 0 && 
+                                    {wordData.definitions && 
                                         <button
                                         onClick={handleFavorite}
                                         className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100 outline-0 focus:outline-0 focus-visible:outline-0 hover:border-0"
@@ -141,7 +141,7 @@ const Card = () => {
                                 </div>
                             }   
 
-                            {!wordData.length && 
+                            {!wordData.definitions && 
                                 <figure className="mx-auto w-10/12">
                                     <img 
                                     src="../../wordNotFound.png"
@@ -150,11 +150,11 @@ const Card = () => {
                                 </figure>
                             }
 
-                            {wordData.length > 0 && wordData[0].image_url &&
+                            {wordData.definitions && wordData.definitions[0].image_url &&
                             <figure className="mt-4 w-1/2 lg:w-2/5 lg:mt-0">
                                 <img 
-                                src={`${wordData[0].image_url}`} 
-                                alt={`Illustration of ${cardTitle}`}
+                                src={`${wordData.definitions[0].image_url}`} 
+                                alt={`Illustration of ${wordData.word}`}
                                 className="rounded-full border-dotted border-2 border-yellow-800 p-1"
                                 />
                             </figure>
@@ -167,10 +167,9 @@ const Card = () => {
                 </div>
                 
             </div>
-            
-            }
+                
+        }
         </div>
-
     )
 }
 

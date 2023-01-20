@@ -1,10 +1,10 @@
-import React from 'react';
-import { useWordContext } from '../context/WordContext';
-import Loading from './Loading';
+import React, { useState } from 'react';
+import { useWordDataContext } from "../hooks/useWordDataContext";
 
-const Searchbar = () => {
+const Searchbar = ({ setLoading, setShowCard }) => {
 
-    const { loading, setLoading, searchWord, setSearchWord, setWordData, setWordDifficulty, setCardTitle } = useWordContext();
+    const [searchWord, setSearchWord] = useState("");
+    const { dataDispatch } = useWordDataContext();
     
     const getWordData = async (word) => {
         const res = await fetch (
@@ -23,14 +23,14 @@ const Searchbar = () => {
 
         const data = await getWordData(searchWord);
         setLoading(false);
+        setShowCard(true);
 
         if (data.definitions) {
-            setWordData(data.definitions);
-            setCardTitle(data.word);
-            setWordDifficulty(data.difficulty);
+            dataDispatch({ type: "GET_WORD_DATA", payload: data });
+
         } else {
-            setWordData([])
-            setCardTitle(searchWord)
+            dataDispatch({ type: "GET_WORD_DATA", payload: [] });
+
         }
     }
 
@@ -51,9 +51,6 @@ const Searchbar = () => {
                     Search
                     </button>
             </form>
-            
-            {loading && <Loading />}
-            
         </div>
     )
 }
