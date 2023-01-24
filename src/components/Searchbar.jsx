@@ -39,7 +39,7 @@ const Searchbar = ({ setLoading, setShowCard }) => {
             <form onSubmit={handleSubmit} className="flex flex-row bg-base-100 rounded-full items-center">
                 <img src="../../search-icon.png" className="h-11 aspect-auto" />
                 <input 
-                type="text"
+                type="search"
                 onChange={(e => setSearchWord(e.target.value))}
                 placeholder="Type here" 
                 className="w-full bg-base-100 mx-1 lg:mx-2 focus:outline-none font-gaegu text-yellow-700 text-xl lg:text-2xl" 
