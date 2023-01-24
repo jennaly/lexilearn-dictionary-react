@@ -73,7 +73,6 @@ const Card = ({ showCard }) => {
         } else {
             entry['_id'] = uuidv1();
             dispatch({ type: 'CREATE_FAVORITE_WORD', payload: entry });
-            console.log(favoriteWords)
         }
     }
 
