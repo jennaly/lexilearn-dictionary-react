@@ -36,7 +36,9 @@ const Index = () => {
     }, [user]);
     
     useEffect(() => {
-        localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
+        if (!user) {
+          localStorage.setItem('favoriteWords', JSON.stringify(favoriteWords));
+        }
     }, [favoriteWords]);
 
     return (
