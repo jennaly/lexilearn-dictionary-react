@@ -21,8 +21,9 @@ const Login = () => {
                         </h2>
 
                         <div className="mt-4 font-gaegu uppercase flex flex-col text-yellow-700">
-                            <label className="font-bold p-0.5">Email:</label>
+                            <label htmlFor="email" className="font-bold p-0.5">Email:</label>
                             <input
+                            id="email"
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="example@gmail.com"
@@ -30,8 +31,9 @@ const Login = () => {
                             className="p-0.5 mb-1"
                             />
 
-                            <label className="p-0.5">Password:</label>
+                            <label htmlFor="password" className="p-0.5">Password:</label>
                             <input
+                            id="password"
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="your password"
