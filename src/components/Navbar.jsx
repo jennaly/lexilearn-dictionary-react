@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useFavoriteWordsContext } from '../hooks/useFavoriteWordsContext';
 import Title from './Title';
 
 const Navbar = () => {
     const { logout } = useLogout();
     const { user } = useAuthContext();
+    const { dispatch } = useFavoriteWordsContext();
 
     const handleClick = () => {
         logout();
+        dispatch({ type: 'GET_FAVORITE_WORDS', payload: [] });
     }
 
     return (
