@@ -106,7 +106,7 @@ const Card = ({ showCard }) => {
     }
 
     return (
-            <div className="max-w-sm mb-4 mx-8 lg:max-w-xl mx-auto">
+            <div className="max-w-sm mb-4 lg:max-w-xl mx-auto">
                 
                 <div className="card bg-base-100 shadow-xl lg:h-[375px]">
 
