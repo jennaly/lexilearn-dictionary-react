@@ -1,9 +1,15 @@
 import React from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useFavoriteWordsContext } from '../hooks/useFavoriteWordsContext';
 
 const DownloadButtons = () => {
-
+    const { user } = useAuthContext();
     const { favoriteWords } = useFavoriteWordsContext();
+
+    const studentName = user.name
+                      .split(" ")
+                      .map((word, index) => index == 0 ? word : word[0])
+                      .join("");
 
     const todayDate = new Date().toISOString().slice(0, 10);
 
@@ -41,7 +47,7 @@ const DownloadButtons = () => {
       
         downloadFile({
           data:  [headers, ...vocabWordsCsv].join('\n'),
-          fileName: `${todayDate}-StudySet.csv`,
+          fileName: `${todayDate}-StudySet-${studentName}.csv`,
           fileType: 'text/csv',
         })
     }
@@ -62,7 +68,7 @@ const DownloadButtons = () => {
       
         downloadFile({
           data:  [headers, ...vocabWordsCsv].join('\n'),
-          fileName: `${todayDate}-TeacherReport.csv`,
+          fileName: `${todayDate}-Report-${studentName}.csv`,
           fileType: 'text/csv',
         })
     }

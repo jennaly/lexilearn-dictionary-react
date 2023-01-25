@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
 
 const Signup = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { signup, error, isLoading } = useSignup();
@@ -9,17 +10,27 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await signup(email, password);
+        await signup(email, password, name);
     }
     return (
         <div className="mb-4 mt-6 lg:max-w-xl mx-auto">
-            <div className="card lg:w-96 bg-base-100 shadow-xl lg:h-[375px] flex flex-col">
+            <div className="card lg:w-96 bg-base-100 shadow-xl lg:h-[450px] flex flex-col">
                 <form onSubmit={handleSubmit} className="card-body justify-between text-lg lg:text-xl">
                     <h2 className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
                         Sign Up
                     </h2>
 
                     <div className="mt-4 font-gaegu uppercase flex flex-col text-yellow-700">
+                        <label htmlFor="name" className="font-bold p-0.5">Name:</label>
+                        <input
+                        id="name"
+                        type="text"
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Miles Morales"
+                        value={name}
+                        className="p-0.5 mb-2"
+                        />
+
                         <label htmlFor="email" className="font-bold p-0.5">Email:</label>
                         <input
                         id="email"
@@ -27,7 +38,7 @@ const Signup = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="example@gmail.com"
                         value={email}
-                        className="p-0.5 mb-1"
+                        className="p-0.5 mb-2"
                         />
 
                         <label htmlFor="password" className="p-0.5">Password:</label>
