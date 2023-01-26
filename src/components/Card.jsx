@@ -6,7 +6,7 @@ import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import {  v1 as uuidv1 } from 'uuid';
 
-const Card = ({ showCard }) => {
+const Card = ( ) => {
     const { wordData } = useWordDataContext();
     const { favoriteWords, dispatch } = useFavoriteWordsContext();
     const { user } = useAuthContext();
