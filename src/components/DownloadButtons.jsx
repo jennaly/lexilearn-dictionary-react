@@ -106,7 +106,7 @@ const DownloadButtons = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Miles Morales"
               value={name}
-              className="bg-transparent p-0.5 uppercase"
+              className="bg-transparent p-0.5"
               />
             </div>
           </div>
