@@ -115,7 +115,7 @@ const DownloadButtons = () => {
             <button 
             type='button' 
             onClick={(e) => handleClick(e, exportToStudySetCsv)}
-            className="rounded-none lg:rounded-full outline outline-1 bg-yellow-700 outline-yellow-700 hover:border hover:border-yellow-800 hover:bg-yellow-800 font-fredoka-one text-base-100 uppercase"
+            className="rounded-none lg:rounded-full bg-yellow-700 hover:bg-yellow-800 hover:border-yellow-800 font-fredoka-one text-base-100 uppercase"
             >
                 Download Study Set
             </button>
@@ -123,7 +123,7 @@ const DownloadButtons = () => {
             <button 
             type='button' 
             onClick={(e) => handleClick(e, exportToReportCsv)}
-            className="rounded-none lg:rounded-full outline outline-1 outline-yellow-700 hover:border hover:border-yellow-700 text-yellow-700 font-fredoka-one uppercase"
+            className="rounded-none lg:rounded-full border-2 border-yellow-700 hover:border-yellow-800  text-yellow-700 hover:text-yellow-800 font-fredoka-one uppercase"
             >
                 Download Teacher's Report
             </button>
