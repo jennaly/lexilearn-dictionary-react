@@ -46,7 +46,7 @@ const Searchbar = ({ setLoading, setShowCard }) => {
                 />
                 <button 
                 type="submit"
-                className="bg-yellow-700 m-1 rounded-full text-base-100 tracking-widest font-gaegu hover:bg-yellow-800"
+                className="bg-yellow-700 m-1 rounded-full text-base-100 tracking-widest font-gaegu hover:bg-yellow-800 hover:border-yellow-800"
                 >
                     Search
                     </button>
