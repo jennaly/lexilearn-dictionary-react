@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -14,7 +15,7 @@ const Signup = () => {
     }
     return (
         <div className="mb-4 mt-6 lg:max-w-xl mx-auto">
-            <div className="card lg:w-96 bg-base-100 shadow-xl lg:h-[450px] flex flex-col">
+            <div className="card lg:w-96 bg-base-100 shadow-xl lg:h-[500px] flex flex-col">
                 <form onSubmit={handleSubmit} className="card-body justify-between text-lg lg:text-xl">
                     <h2 className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 mr-6 border-b-2 border-yellow-700 text-yellow-700">
                         Sign Up
@@ -57,8 +58,15 @@ const Signup = () => {
                     </button>
 
                     { error && 
-                        <div className="font-gaegu text-yellow-500 text-center">{error}</div>
+                        <div className="font-gaegu text-red-600 text-center">{error}</div>
                     }
+                    
+                    <span className="font-gaegu text-yellow-700 text-center">
+                        Already have an account? 
+                        <Link to="/login">
+                            <span className="text-yellow-500"> Login!</span>
+                        </Link>
+                    </span>
                 </form>
             </div>
         </div>
