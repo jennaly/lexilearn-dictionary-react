@@ -27,11 +27,13 @@ const Searchbar = ({ setLoading, setShowCard }) => {
 
         if (data.definitions) {
             dataDispatch({ type: "GET_WORD_DATA", payload: data });
+            setSearchWord("");
 
         } else {
             dataDispatch({ type: "GET_WORD_DATA", payload: [] });
 
         }
+
     }
 
     return (
@@ -43,6 +45,7 @@ const Searchbar = ({ setLoading, setShowCard }) => {
                 onChange={(e => setSearchWord(e.target.value))}
                 placeholder="Type here" 
                 className="w-full bg-base-100 mx-1 lg:mx-2 focus:outline-none font-gaegu text-yellow-700 text-xl lg:text-2xl" 
+                value={searchWord}
                 />
                 <button 
                 type="submit"
