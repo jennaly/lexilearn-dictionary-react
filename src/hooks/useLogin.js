@@ -11,7 +11,7 @@ export const useLogin = () => {
         setIsLoading(true);
         setError(null);
 
-        const res = await fetch("https://lexilearn-server.up.railway.app/api/user/login", {
+        const res = await fetch("https://lexilearn-server.cyclic.app/api/user/login", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ email, password }),

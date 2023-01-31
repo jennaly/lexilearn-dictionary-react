@@ -52,7 +52,7 @@ const Card = ( ) => {
 
         if (user) {
             const addWordToDB = async () => {
-                const res = await fetch("https://lexilearn-server.up.railway.app/api/favoriteWords", {
+                const res = await fetch("https://lexilearn-server.cyclic.app/api/favoriteWords", {
                     method: "POST",
                     body: JSON.stringify(entry),
                     headers: {
@@ -84,7 +84,7 @@ const Card = ( ) => {
             const removeWordFromDB = async () => {
                 const { _id } = deletedWord;
 
-                const res = await fetch(`https://lexilearn-server.up.railway.app/api/favoriteWords/${_id}`, {
+                const res = await fetch(`https://lexilearn-server.cyclic.app/api/favoriteWords/${_id}`, {
                     method: "DELETE",
                     headers: {
                         'Authorization': `Bearer ${user.token}`

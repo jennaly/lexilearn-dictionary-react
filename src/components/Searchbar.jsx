@@ -8,7 +8,7 @@ const Searchbar = ({ setLoading, setShowCard }) => {
     
     const getWordData = async (word) => {
         const res = await fetch (
-            `https://lexilearn-server.up.railway.app/api/dictionary/${word}`
+            `https://lexilearn-server.cyclic.app/api/dictionary/${word}`
           )
     
         const data = await res.json();

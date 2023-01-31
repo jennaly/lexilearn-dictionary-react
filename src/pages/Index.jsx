@@ -17,7 +17,7 @@ const Index = () => {
 
     useEffect(() => {
         const fetchWords = async () => {
-          const res = await fetch( `https://lexilearn-server.up.railway.app/api/favoriteWords`, {
+          const res = await fetch( `https://lexilearn-server.cyclic.app/api/favoriteWords`, {
             headers: {
               'Authorization': `Bearer ${user.token}`
             }
