@@ -119,7 +119,6 @@ const Card = ( ) => {
                                 }
                             </div>
 
-                            {wordData.definitions && 
                                 <button
                                 onClick={handleFavorite}
                                 className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100 outline-0 focus:outline-0 focus-visible:outline-0 hover:border-0"
