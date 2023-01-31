@@ -34,7 +34,6 @@ const Card = ( ) => {
     const handleFavorite = () => {
         if (isFavorite) {
             removeWordFromFavorites();
-            return;
         } else {
             addWordToFavorites();
         }
