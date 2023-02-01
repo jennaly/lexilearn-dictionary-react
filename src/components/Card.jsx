@@ -6,36 +6,35 @@ import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import {  v1 as uuidv1 } from 'uuid';
 
+// this component renders data that is returned from owlbot api in response to the user's word search
+// if the word exists in the Owlbot database, the contents rendered are: the word, definition(s), and if available - picture and example sentence(s)
 const Card = ( ) => {
-
-    // context: when a user searches for a word (see ./Searchbar), the data that is returned from Owlbot API is saved to the wordData state
-    // gets the word data state (all of the information pertaining to the current word, i.e. definitions, picture, emoji, etc.)
+    
+    // contains data returned by Owlbot 
     const { wordData } = useWordDataContext();
     
-    // gets the favorite words state (all of the user's favorite words)
-    // this is so that when there are changes to the user's study set, there is no need to send a GET request to the server to reflect updates
+    // contains all of the saved words in user's study set
     const { favoriteWords, dispatch } = useFavoriteWordsContext();
 
-    // gets the current user's authentication state
+    // user's authentication state
     const { user } = useAuthContext();
 
-    // information about whether the current word displayed is already saved/favorited to the study set
+    // whether the current word displayed already exists in user's study set
     const [isFavorite, setIsFavorite] = useState(false);
 
     // checks for whether the current word is saved and updates the local state accordingly
-    // runs in these three cases:
-    // 1. on render 
-    // 2. when the current word changes (when the user is looking at a different word) 
-    // 3. when there's changes to the study set (to make sure that state is updated if the user chooses to remove/unfavorite the current word)
+    // runs in these two cases following the intial render:
+    // 1. when the user searches for a different word
+    // 2. when there's changes to the study set (to make sure that state is updated if the user chooses to remove/unfavorite the current word)
     useEffect(() => {
         const checkIsFavorite = () => {  
-            // if there is no words saved to the study set, the isFavorite state will be false regardless of what the current word is
-            // this prevents the function from having to run the rest of the logic
+            
+            // base case: if the user's study set is empty
             if (!favoriteWords.length) {
                 setIsFavorite(false);
             }
 
-            // checks if the current word is already in the study set, if it is, sets the isFavorite state to true
+            // checks if the current word exists in the study set and updates the isFavorite state to true
             // both strings are always in lowercase so there's no need to format them before evaluating
             for (const favoriteWord of favoriteWords) {
                 if (favoriteWord.term === wordData.word) {
@@ -44,7 +43,6 @@ const Card = ( ) => {
                 } 
             }
             
-            // if there are words saved to the study set, but the current word isn't one of them, set the local state to false
             setIsFavorite(false);
         }
         
@@ -52,12 +50,9 @@ const Card = ( ) => {
 
     }, [wordData, favoriteWords]);
 
-    // is called when the user clicks on the star icon to save/remove a word from the study set
+    // handles changes to isFavorite state when the user clicks on the star icon to save/remove a word from the study set
     const handleFavorite = () => {
         
-        // checks if the current word is already in the study set,
-        // if it is, remove it from the set
-        // if it is not, add it to the set
         if (isFavorite) {
             removeWordFromFavorites();
 
@@ -66,11 +61,13 @@ const Card = ( ) => {
         }
     }
 
-    // favorite/adds a word to the study set
+    // adds a word to the study set
     const addWordToFavorites = () => {
 
+        // transforms definitions data from owlbot before saving to database
         const definitions = wordData.definitions.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
 
+        // formats favoriteWord document
         const entry = {
             "term": wordData.word,
             "definitions": [
@@ -80,8 +77,6 @@ const Card = ( ) => {
         }
 
         // if the user is logged in, send a post request to the server to add the word to the database
-        // this is so that the word is saved in the user's account
-        // the next time the user is logged in, regardless of the device, their study set will include this word
         if (user) {
             const addWordToDB = async () => {
                 const res = await fetch("https://lexilearn-server.cyclic.app/api/favoriteWords", {
@@ -122,7 +117,6 @@ const Card = ( ) => {
         const deletedWord = favoriteWords.find(favoriteWord => favoriteWord.term == wordData.word);
 
         // if the user is logged in, send a post request to the server to remove the word from the database
-        // this is so that the word is also removed from the user's account
         if (user) {
             
             const removeWordFromDB = async () => {
@@ -150,8 +144,7 @@ const Card = ( ) => {
             removeWordFromDB();
 
         } else {
-            // if the user is not logged in, the favoriteWords state will be included to remove the word
-            // localStorage will also be updated to reflect this change
+            // if the user is not logged in: favoriteWords state and localStorage are updated
             dispatch({ type: "DELETE_FAVORITE_WORD", payload: deletedWord });
         }
     }
@@ -161,36 +154,36 @@ const Card = ( ) => {
                 
                 <div className="flex flex-col lg:flex-row justify-between items-center">
 
-                    {/* if owlbot returns data for the word that the user searched, then render its contents*/}
+                    {/* renders the data returned by owlbot, if the word exists in their database*/}
                     {wordData.definitions &&
                         <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 lg:mr-6 border-b-2 border-yellow-700 text-yellow-700">
 
                             <div className="w-full flex gap-2 ">
                                 <h2>{wordData.word}</h2>
 
-                                {/* if the returned data includes an emoji, render it */}
+                                {/* renders word's emoji if it's available*/}
                                 {wordData.definitions && wordData.definitions[0].emoji && 
                                     <span>{wordData.definitions[0].emoji}</span>
                                 }
                             </div>
 
-                            {/* renders button to add/remove the current displayed word to/from the study set */}
+                            {/* star icon (button to add or remove current word from study set)*/}
                             <button
                             onClick={handleFavorite}
                             className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100 outline-0 focus:outline-0 focus-visible:outline-0 hover:border-0"
                             data-tip="Save your favorite words to your study set"
                             >
-                                {/* if the current word is already in the study set, display the star icon filled */}
+                                {/* if word is already in the study set, display the star icon filled */}
                                 {isFavorite && <AiFillStar style={{ width: '40px', height: '40px', color: '#EBD678'}} />}
 
-                                {/* if the current word is already in the study set, display the star icon outline */}
+                                {/* otherwise, display the star icon outline */}
                                 {!isFavorite && <AiOutlineStar style={{ width: '40px', height: '40px', color: '#EBD678'}} />}
                             </button>
 
                         </div>
                     }   
 
-                    {/* if the word that the user searched doesn't exist in the owlbot database, render a picture that signals an error */}
+                    {/* if the word doesn't exist in the owlbot database, render a picture that signals an error */}
                     {!wordData.definitions && 
                         <figure className="mx-auto w-10/12">
                             <img 
@@ -199,7 +192,7 @@ const Card = ( ) => {
                             />
                         </figure>
                     }
-                    {/* if the word that the user searched does exist in the owlbot database, and the data returned from owlbot includes a picture, render it*/}
+                    {/* renders the picture that owlbot returns, if available*/}
                     {wordData.definitions && wordData.definitions[0].image_url &&
                     <figure className="mt-4 w-1/2 lg:w-2/5 lg:mt-0">
                         <img 
