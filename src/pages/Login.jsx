@@ -2,15 +2,20 @@ import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { Link } from 'react-router-dom';
 
+import Loading from '../components/Loading';
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const { login, error, isLoading } = useLogin();
-
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
         await login(email, password);
+        setLoading(false);
     }
     return (
             <div className="mb-4 mt-6 lg:max-w-xl mx-auto">
@@ -59,6 +64,10 @@ const Login = () => {
                         </span>
                     </form>
                 </div>
+
+                { loading && 
+                    <Loading />
+                }
             </div>
     )
 }

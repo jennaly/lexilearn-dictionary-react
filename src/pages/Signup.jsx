@@ -2,16 +2,21 @@ import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
 import { Link } from 'react-router-dom';
 
+import Loading from '../components/Loading';
+
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const { signup, error, isLoading } = useSignup();
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
         await signup(email, password, name);
+        setLoading(false);
     }
     return (
         <div className="mb-4 mt-6 lg:max-w-xl mx-auto">
@@ -69,6 +74,10 @@ const Signup = () => {
                     </span>
                 </form>
             </div>
+            
+            { loading && 
+                <Loading />
+            }
         </div>
     )
 }
