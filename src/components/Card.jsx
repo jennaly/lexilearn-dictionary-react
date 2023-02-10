@@ -6,11 +6,10 @@ import CardBody from './CardBody';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import {  v1 as uuidv1 } from 'uuid';
 
-// this component renders data that is returned from owlbot api in response to the user's word search
-// if the word exists in the Owlbot database, the contents rendered are: the word, definition(s), and if available - picture and example sentence(s)
+// this component renders data returned from the serer in response to the user's word search
 const Card = ( ) => {
     
-    // contains data returned by Owlbot 
+    // contains data returned by Owlbot and Twinword API (through Lexilearn server)
     const { wordData } = useWordDataContext();
     
     // contains all of the saved words in user's study set
@@ -64,10 +63,10 @@ const Card = ( ) => {
     // adds a word to the study set
     const addWordToFavorites = () => {
 
-        // transforms definitions data from owlbot before saving to database
+        // transforms definitions data from Owlbot before saving to database
         const definitions = wordData.definitions.map((e, index) => `${index + 1}. (${e.type}) ${e.definition}`);
 
-        // formats favoriteWord document
+        // favoriteWord document
         const entry = {
             "term": wordData.word,
             "definitions": [
@@ -183,7 +182,7 @@ const Card = ( ) => {
                         </div>
                     }   
 
-                    {/* if the word doesn't exist in the owlbot database, render a picture that signals an error */}
+                    {/* if the word doesn't exist in the owlbot database, render a picture that signals an error to the*/}
                     {!wordData.definitions && 
                         <figure className="mx-auto w-10/12">
                             <img 
